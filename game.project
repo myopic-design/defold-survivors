@@ -1,5 +1,6 @@
 [project]
 title = defold-survivors
+dependencies#0 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
