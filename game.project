@@ -2,6 +2,7 @@
 title = defold-survivors
 dependencies#0 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
 dependencies#1 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.0.zip
+dependencies#2 = https://github.com/britzl/defold-orthographic/archive/refs/tags/3.2.1.zip
 
 [bootstrap]
 main_collection = /main/main.collectionc
