@@ -1,19 +1,15 @@
+local ids = require("modules.ids")
+local kinematic = require("modules.kinematic")
+
 local MAX_SPEED = 75
 
-local ID_PLAYER = hash("/player")
-
-local MSG_CONTACT_POINT_RESPONSE = hash("contact_point_response")
-
-local reset_state
-
 function init(self)
-  self.correction = vmath.vector3()
-  reset_state(self)
+  self.kinematic = kinematic.create()
 end
 
 function update(self, dt)
   local position = go.get_position()
-  local player_position = go.get_world_position(ID_PLAYER)
+  local player_position = go.get_world_position(ids.PLAYER)
 
   local direction = player_position - position
   if vmath.length_sqr(direction) > 1 then
@@ -22,25 +18,9 @@ function update(self, dt)
 
   go.set_position(position + direction * MAX_SPEED * dt)
 
-  reset_state(self)
+  self.kinematic.update()
 end
 
 function on_message(self, message_id, message, sender)
-  -- See: https://defold.com/manuals/physics-resolving-collisions/
-  if message_id == MSG_CONTACT_POINT_RESPONSE then
-    if message.distance > 0 then
-      local proj = vmath.project(self.correction, message.normal * message.distance)
-      if proj < 1 then
-        local comp = (message.distance - message.distance * proj) * message.normal
-        go.set_position(go.get_position() + comp)
-        self.correction = self.correction + comp
-      end
-    end
-  end
-end
-
-function reset_state(self)
-  self.correction.x = 0
-  self.correction.y = 0
-  self.correction.z = 0
+  self.kinematic.on_message(message_id, message)
 end

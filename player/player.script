@@ -1,3 +1,5 @@
+local input = require("modules.input")
+
 local MAX_SPEED = 200
 
 local MOVE_LEFT = hash("move_left")
@@ -5,22 +7,19 @@ local MOVE_RIGHT = hash("move_right")
 local MOVE_UP = hash("move_up")
 local MOVE_DOWN = hash("move_down")
 
-local reset_state
-
 function init(self)
-  msg.post(".", "acquire_input_focus")
-
-  self.action_strength = {}
-  reset_state(self)
+  self.input = input.create()
+  self.input.acquire()
 end
 
 function final(self)
-  msg.post(".", "release_input_focus")
+  self.input.release()
 end
 
 function update(self, dt)
-  local x_movement = self.action_strength.move_right - self.action_strength.move_left
-  local y_movement = self.action_strength.move_up - self.action_strength.move_down
+  local input = self.input
+  local x_movement = input.get_action_strength(MOVE_RIGHT) - input.get_action_strength(MOVE_LEFT)
+  local y_movement = input.get_action_strength(MOVE_UP) - input.get_action_strength(MOVE_DOWN)
 
   local direction = vmath.vector3(x_movement, y_movement, 0)
   if vmath.length_sqr(direction) > 1 then
@@ -30,24 +29,9 @@ function update(self, dt)
   local position = go.get_position()
   go.set_position(position + direction * MAX_SPEED * dt)
 
-  reset_state(self)
+  self.input.update()
 end
 
 function on_input(self, action_id, action)
-  if action_id == MOVE_LEFT then
-    self.action_strength.move_left = action.value
-  elseif action_id == MOVE_RIGHT then
-    self.action_strength.move_right = action.value
-  elseif action_id == MOVE_UP then
-    self.action_strength.move_up = action.value
-  elseif action_id == MOVE_DOWN then
-    self.action_strength.move_down = action.value
-  end
-end
-
-function reset_state(self)
-  self.action_strength.move_left = 0
-  self.action_strength.move_right = 0
-  self.action_strength.move_up = 0
-  self.action_strength.move_down = 0
+  self.input.on_input(action_id, action)
 end
