@@ -1,0 +1,9 @@
+local deftest = require("deftest.deftest")
+
+local placeholder_spec = require("test.placeholder_spec")
+
+function init(self)
+  deftest.add(placeholder_spec)
+
+  deftest.run({ coverage = { enabled = true } })
+end
