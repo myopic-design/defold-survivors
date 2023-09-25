@@ -1,0 +1,30 @@
+name: Setup
+description: All the boring stuff.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache tools
+      id: cache-tools
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-tools
+      with:
+        path: tools
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('Makefile') }}
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: microsoft
+        java-version: "17"
+
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+
+    - name: Install misc tools
+      shell: bash
+      run: |
+        brew install coreutils gettext graphicsmagick imagemagick tree wine-stable

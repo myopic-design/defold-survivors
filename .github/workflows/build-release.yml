@@ -1,0 +1,61 @@
+name: Build & Release
+
+on:
+  push:
+    branches: main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    name: Build & Release
+    runs-on: macos-latest
+
+    steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: simple
+          include-v-in-tag: false
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build
+        env:
+          APP_VERSION: ${{ steps.release.outputs.tag_name || '0.0.1' }}
+        run: |
+          make resolve test-macos-x86
+          make clean dist
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: |
+            dist/**/*.dmg
+            dist/**/*.zip
+
+      - name: Release
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          APP_VERSION: ${{ steps.release.outputs.tag_name }}
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          BUTLER_PROJECT: ${{ secrets.BUTLER_PROJECT }}
+        run: |
+          make publish
+
+      - name: Upload release artifacts
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ steps.release.outputs.tag_name }} dist/**/*.dmg dist/**/*.zip
