@@ -1,5 +1,7 @@
 [project]
-title = defold-survivors
+title = DefoldSurvivors
+version = 0.0.0-development
+bundle_resources = /assets/bundle
 dependencies#0 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
 dependencies#1 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.0.zip
 dependencies#2 = https://github.com/britzl/defold-orthographic/archive/refs/tags/3.2.1.zip
@@ -7,6 +9,9 @@ dependencies#2 = https://github.com/britzl/defold-orthographic/archive/refs/tags
 [bootstrap]
 main_collection = /main/main.collectionc
 render = /orthographic/render/orthographic.renderc
+
+[script]
+shared_state = 1
 
 [input]
 game_binding = /input/game.input_bindingc
@@ -20,25 +25,13 @@ height = 360
 view_width = 960
 view_height = 540
 
-[script]
-shared_state = 1
-
-[windows]
-app_icon = /assets/app_icons/appicon.ico
-
-[osx]
-app_icon = /assets/app_icons/appicon.icns
-
-[android]
-input_method = HiddenInputField
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
 
 [physics]
 gravity_y = -1000.0
 scale = 0.01
-
-[graphics]
-default_texture_min_filter = nearest
-default_texture_mag_filter = nearest
 
 [sprite]
 subpixels = 0
@@ -46,3 +39,41 @@ subpixels = 0
 [tilemap]
 max_tile_count = 2560
 
+[windows]
+app_icon = /assets/windows/icon.ico
+
+[osx]
+bundle_version = 0.0.0-development
+bundle_identifier = design.myopic.DefoldSurvivors
+bundle_name = DefoldSurvivors
+app_icon = /assets/macos/icon.icns
+
+[ios]
+bundle_version = 0.0.0-development
+bundle_identifier = design.myopic.DefoldSurvivors
+bundle_name = DefoldSurvivors
+app_icon_76x76 = /assets/ios/icon_76x76.png
+app_icon_120x120 = /assets/ios/icon_120x120.png
+app_icon_152x152 = /assets/ios/icon_152x152.png
+app_icon_167x167 = /assets/ios/icon_167x167.png
+app_icon_180x180 = /assets/ios/icon_180x180.png
+icons_asset = /assets/ios/Assets.car
+
+[android]
+input_method = HiddenInputField
+version_code = 2100000000
+package = design.myopic.DefoldSurvivors
+app_icon_36x36 = /assets/android/icon_36x36.png
+app_icon_48x48 = /assets/android/icon_48x48.png
+app_icon_72x72 = /assets/android/icon_72x72.png
+app_icon_96x96 = /assets/android/icon_96x96.png
+app_icon_144x144 = /assets/android/icon_144x144.png
+app_icon_192x192 = /assets/android/icon_192x192.png
+
+[html5]
+cssfile = /builtins/manifests/web/dark_theme.css
+scale_mode = fit
+show_console_banner = 0
+show_fullscreen_button = 0
+show_made_with_defold = 0
+splash_image = /assets/web/splash.png

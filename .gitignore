@@ -1,3 +1,13 @@
 /.internal
+/assets/**/*.car
+/assets/**/*.icns
+/assets/**/*.ico
+/assets/**/*.png
+!/assets/*.png
 /build
 /coverage
+/dist
+/tools
+/.env
+/debug.*
+/manifest.*
