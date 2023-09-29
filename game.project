@@ -71,9 +71,10 @@ app_icon_144x144 = /assets/android/icon_144x144.png
 app_icon_192x192 = /assets/android/icon_192x192.png
 
 [html5]
-cssfile = /builtins/manifests/web/dark_theme.css
 scale_mode = fit
 show_console_banner = 0
 show_fullscreen_button = 0
 show_made_with_defold = 0
+htmlfile = /assets/web/engine_template.html
+cssfile = /assets/web/dark_theme.css
 splash_image = /assets/web/splash.png
