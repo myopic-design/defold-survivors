@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/myopic-design/defold-survivors/compare/1.0.0...1.1.0) (2023-09-29)
+
+
+### Features
+
+* upgrade Defold to 1.6.0 ([d3cb8f9](https://github.com/myopic-design/defold-survivors/commit/d3cb8f9b544715f715e6dd28d6db80536cc304ad))
+
 ## 1.0.0 (2023-09-29)
 
 
