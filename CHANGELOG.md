@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/myopic-design/defold-survivors/compare/1.1.0...1.2.0) (2023-10-01)
+
+
+### Features
+
+* copy built-in HTML and CSS templates ([94e855d](https://github.com/myopic-design/defold-survivors/commit/94e855dd3556d8a8b3f76dc06e0bc3bf33c95a0a))
+* customize HTML template ([a3ca72b](https://github.com/myopic-design/defold-survivors/commit/a3ca72b860ce83846c651dee7c001261a28227fa))
+
 ## [1.1.0](https://github.com/myopic-design/defold-survivors/compare/1.0.0...1.1.0) (2023-09-29)
 
 
