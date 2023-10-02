@@ -1,5 +1,6 @@
 	.canvas-app-progress {
 		background-color: #262b44;
+		overflow: hidden;
 		padding: 10px;
 		position: absolute;
 		bottom: 7.5%;
