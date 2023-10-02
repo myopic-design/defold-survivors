@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/myopic-design/defold-survivors/compare/1.2.0...1.2.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* hide overflow in progress bar ([ee6f86f](https://github.com/myopic-design/defold-survivors/commit/ee6f86f7351586f0b77f7868c0bf1facde78e3f3))
+
 ## [1.2.0](https://github.com/myopic-design/defold-survivors/compare/1.1.0...1.2.0) (2023-10-01)
 
 
