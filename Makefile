@@ -427,7 +427,6 @@ publish-itchio:
 
 .PHONY: publish-itchio-windows
 publish-itchio-windows: $(WINDOWS_DIST_ZIP) $(BUTLER_PATH)
-	echo -n "$(BUTLER_PATH) push $< $(BUTLER_PROJECT):windows --userversion $(APP_VERSION)" | base64
 	"$(BUTLER_PATH)" push "$<" "$(BUTLER_PROJECT):windows" --userversion "$(APP_VERSION)"
 
 .PHONY: publish-itchio-macos-arm
