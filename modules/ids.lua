@@ -4,5 +4,5 @@
 
 return {
   CAMERA = hash("/camera"),
-  PLAYER = hash("/player"),
+  PLAYER = hash("/player_controller/player"),
 }

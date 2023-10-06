@@ -1,25 +1,5 @@
 name: "main"
 instances {
-  id: "player"
-  prototype: "/player/player.go"
-  position {
-    x: 80.0
-    y: 80.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
   id: "dungeon"
   prototype: "/environments/dungeon.go"
   position {
@@ -72,7 +52,7 @@ instances {
     }
     properties {
       id: "follow_target"
-      value: "/player"
+      value: "/player_controller/player"
       type: PROPERTY_TYPE_HASH
     }
     properties {
@@ -103,6 +83,26 @@ instances {
   position {
     x: 320.0
     y: 240.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+collection_instances {
+  id: "player_controller"
+  collection: "/player/player_controller.collection"
+  position {
+    x: 80.0
+    y: 80.0
     z: 0.0
   }
   rotation {

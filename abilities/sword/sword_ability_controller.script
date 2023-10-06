@@ -1,0 +1,9 @@
+local ids = require("modules.ids")
+
+local TIMER_DELAY = 1.5
+
+function init(self)
+  timer.delay(TIMER_DELAY, true, function()
+    factory.create("#factory", go.get_position(ids.PLAYER))
+  end)
+end
