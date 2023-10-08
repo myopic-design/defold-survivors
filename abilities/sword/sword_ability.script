@@ -1,1 +1,50 @@
-function init(self) end
+local sequence = require("modules.sequence")
+
+--- Keyframes for the rotation animation, as `(value, duration)` tuples.
+local keyframes_rotation = {
+  { 10, 0.2 },
+  { -180, 0.2 },
+  { 0, 0.35 },
+}
+--- Keyframes for the scale animation, as `(value, duration)` tuples.
+local keyframes_scale = {
+  { 1.25, 0.1 },
+  { 1, 0.1 },
+  { 2, 0.15 },
+  { 1, 0.15 },
+  { 0, 0.25 },
+}
+
+local animate
+local animate_property
+
+function init(self)
+  animate()
+end
+
+function animate()
+  sequence.run(function()
+    animate_property("euler.z", keyframes_rotation)
+  end)
+  sequence.run(function()
+    animate_property("scale", keyframes_scale)
+  end)
+  sequence.run(function()
+    sequence.delay(0.75)
+    go.delete()
+  end)
+end
+
+function animate_property(property, keyframes)
+  for _, keyframe in ipairs(keyframes) do
+    sequence.go_animate(
+      ".",
+      property,
+      go.PLAYBACK_ONCE_FORWARD,
+      keyframe[1],
+      go.EASING_INOUTCUBIC,
+      keyframe[2],
+      0
+    )
+  end
+end
