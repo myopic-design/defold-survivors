@@ -30,6 +30,10 @@ key_trigger {
   input: KEY_DOWN
   action: "move_down"
 }
+key_trigger {
+  input: KEY_SLASH
+  action: "toggle_debug"
+}
 mouse_trigger {
   input: MOUSE_BUTTON_LEFT
   action: "touch"

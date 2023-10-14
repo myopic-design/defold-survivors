@@ -1,3 +1,12 @@
+local TOGGLE_DEBUG = hash("toggle_debug")
+
 function init(self)
   msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+  msg.post(".", "acquire_input_focus")
+end
+
+function on_input(self, action_id, action)
+  if action_id == TOGGLE_DEBUG and action.pressed then
+    msg.post("@system:", "toggle_physics_debug")
+  end
 end
