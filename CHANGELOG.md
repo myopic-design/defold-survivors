@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.0](https://github.com/myopic-design/defold-survivors/compare/1.2.1...1.3.0) (2023-10-14)
+
+
+### Features
+
+* add go_list module ([4e8f356](https://github.com/myopic-design/defold-survivors/commit/4e8f3569a62bfa0d331acf5a55905755414aaf40))
+* add sword ability ([a28bed8](https://github.com/myopic-design/defold-survivors/commit/a28bed815a6e4edaa5699fd5bdfee345a2c1affc))
+* allow toggling physics debug via keyboard ([b10f054](https://github.com/myopic-design/defold-survivors/commit/b10f0548c15168f6fe282b746221e5a5f233e3db))
+* animate sword ability ([18beb72](https://github.com/myopic-design/defold-survivors/commit/18beb72df964e84fd97465e68742eb63237a6e2f))
+* have sword ability spawn on nearest enemy ([5e346a7](https://github.com/myopic-design/defold-survivors/commit/5e346a71dcee66b927444432cd887c44c6d3757f))
+
 ## [1.2.1](https://github.com/myopic-design/defold-survivors/compare/1.2.0...1.2.1) (2023-10-02)
 
 
