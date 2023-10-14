@@ -1,7 +1,7 @@
 local ids = require("modules.ids")
 local kinematic = require("modules.kinematic")
 
-local MAX_SPEED = 75
+local MAX_SPEED = 25
 
 function init(self)
   self.kinematic = kinematic.create()
@@ -9,7 +9,7 @@ end
 
 function update(self, dt)
   local position = go.get_position()
-  local player_position = go.get_world_position(ids.PLAYER)
+  local player_position = go.get_position(ids.PLAYER)
 
   local direction = player_position - position
   if vmath.length_sqr(direction) > 1 then

@@ -6,26 +6,7 @@ local messages = require("modules.messages")
 
 local M = {}
 
---- Handle geometry contact by separating this object from the collision.
---- @param correction vector3 # aggregated correction vector (for when dealing with multiple
---- collisions per frame)
---- @param normal vector3 # collision normal (as provided from a `contact_point_response` message)
---- @param distance number # collision distance (as provided from a `contact_point_response`
---- message)
---- @param id string|hash|url? # optional id of the game object to separate
-function M.handle_geometry_contact(correction, normal, distance, id)
-  -- See: https://defold.com/manuals/physics-resolving-collisions/
-  if distance > 0 then
-    local proj = vmath.project(correction, normal * distance)
-    if proj < 1 then
-      local comp = (distance - distance * proj) * normal
-      go.set_position(go.get_position(id) + comp, id)
-      correction.x = correction.x + comp.x
-      correction.y = correction.y + comp.y
-      correction.z = correction.z + comp.z
-    end
-  end
-end
+local handle_geometry_contact
 
 --- Create an instance of the kinematic helper.
 --- @return table # helper instance
@@ -39,7 +20,7 @@ function M.create()
   --- @param message table # message data
   function instance.on_message(message_id, message)
     if message_id == messages.CONTACT_POINT_RESPONSE then
-      M.handle_geometry_contact(correction, message.normal, message.distance)
+      handle_geometry_contact(correction, message.normal, message.distance)
     end
   end
 
@@ -51,6 +32,27 @@ function M.create()
   end
 
   return instance
+end
+
+--- Handle geometry contact by separating this object from the collision.
+--- @param correction vector3 # aggregated correction vector (for when dealing with multiple
+--- collisions per frame)
+--- @param normal vector3 # collision normal (as provided from a `contact_point_response` message)
+--- @param distance number # collision distance (as provided from a `contact_point_response`
+--- message)
+--- @param id string|hash|url? # optional id of the game object to separate
+function handle_geometry_contact(correction, normal, distance, id)
+  -- See: https://defold.com/manuals/physics-resolving-collisions/
+  if distance > 0 then
+    local proj = vmath.project(correction, normal * distance)
+    if proj < 1 then
+      local comp = (distance - distance * proj) * normal
+      go.set_position(go.get_position(id) + comp, id)
+      correction.x = correction.x + comp.x
+      correction.y = correction.y + comp.y
+      correction.z = correction.z + comp.z
+    end
+  end
 end
 
 return M

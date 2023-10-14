@@ -1,9 +1,27 @@
+local go_list = require("modules.go_list")
 local ids = require("modules.ids")
 
 local TIMER_DELAY = 1.5
 
 function init(self)
+  self.enemies_nearby = go_list.create()
+
   timer.delay(TIMER_DELAY, true, function()
-    factory.create("#factory", go.get_position(ids.PLAYER))
+    local player_position = go.get_position(ids.PLAYER)
+    local enemy_closest = self.enemies_nearby.get_closest(player_position)
+    if enemy_closest == nil then
+      return
+    end
+    factory.create("#factory", go.get_position(enemy_closest))
   end)
+end
+
+function on_message(self, message_id, message, sender)
+  if message_id == hash("trigger_response") then
+    if message.enter then
+      self.enemies_nearby.add(message.other_id)
+    else
+      self.enemies_nearby.remove(message.other_id)
+    end
+  end
 end
