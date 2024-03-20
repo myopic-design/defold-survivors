@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Release Please
-        uses: google-github-actions/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01 # v3
+        uses: google-github-actions/release-please-action@a37ac6e4f6449ce8b3f7607e4d97d0146028dc0b # v4
         id: release
         with:
           release-type: simple
@@ -37,7 +37,7 @@ jobs:
           make clean dist
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
         with:
           name: artifacts
           path: |
