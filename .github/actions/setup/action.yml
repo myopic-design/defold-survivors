@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Cache tools
       id: cache-tools
-      uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       env:
         cache-name: cache-tools
       with:
@@ -14,15 +14,15 @@ runs:
         key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('Makefile') }}
 
     - name: Set up Java
-      uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3
+      uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
       with:
         distribution: microsoft
         java-version: "17"
 
     - name: Set up Node
-      uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: "18"
+        node-version: "24"
 
     - name: Install misc tools
       shell: bash
